@@ -4,7 +4,6 @@
 <div>
 <p><strong>Project Flow</p>
 <img src ="assets\DevsecOps-Youtube clone Flow chart.png" alt ="DevSecOps flow">
-
 </div>
 
 
