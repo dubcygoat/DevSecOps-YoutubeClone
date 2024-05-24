@@ -2,7 +2,7 @@
                 
 <h1>YouTube Clone App with DevSecOps and Jenkins Shared Library</h1>
 <div>
-<p><strong>Project Flow</p>
+<p><strong>Project Flow</strong></p>
 <img src ="assets\DevsecOps-Youtube clone Flow chart.png" alt ="DevSecOps flow">
 </div>
 
@@ -15,8 +15,8 @@ Github Repo: https://github.com/dubcygoat/Youtube-clone-app.git
 
 Normal Jenkinsfile you can use this one without the shared library
 
-STEPS:
-Step 1: Launch an Ubuntu 22.04 instance for Jenkins
+<h2>STEPS:</h2>
+<p>Step 1: Launch an Ubuntu 22.04 instance for Jenkins</p>
 Log into AWS Console: Sign in to your AWS account.
 Launch an Instance:
 Choose “EC2” from services. Click “Launch Instance.”
