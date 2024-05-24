@@ -1,9 +1,8 @@
  				
-                
-<h1>YouTube Clone App with DevSecOps and Jenkins Shared Library</h1>
-<div>
-<p><strong>Project Flow</strong></p>
-<img src ="assets\DevsecOps-Youtube clone Flow chart.png" alt ="DevSecOps flow">
+<div>                
+  <h1>YouTube Clone App with DevSecOps and Jenkins Shared       Library</h1>
+   <p><strong>Project Flow</strong></p>
+   <img src ="assets\DevsecOps-Youtube clone Flow chart.png" alt ="DevSecOps flow">
 </div>
 
 
@@ -14,63 +13,68 @@ This project focuses on deploying a YouTube clone application using a DevSecOps 
 Github Repo: https://github.com/dubcygoat/Youtube-clone-app.git
 
 Normal Jenkinsfile you can use this one without the shared library
-
-<h2><strong>STEPS:</strong></h2>
-<p>Step 1: Launch an Ubuntu 22.04 instance for Jenkins</p>
-Log into AWS Console: Sign in to your AWS account.
-Launch an Instance:
-Choose “EC2” from services. Click “Launch Instance.”
-Choose an AMI: Select an Ubuntu image.
-Choose an Instance Type: Pick “t2.large.”
-Key Pair: Choose an existing key pair or create a new one.
-Configure Security Group:
-Create a new security group. Add rules for HTTP, and HTTPS, and open all ports for learning purposes. <strong>Add Storage: </strong>Allocate at least 20 GB of storage.
-<strong>Launch Instance: Review and launch the instance.
-Access Your Instance:</strong> Use SSH to connect to your instance with the private key.
-<i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i><br>
-
-<strong>Connect to Your EC2 Instance and Install Jenkins:</strong>
-Use MobaXterm or PuTTY to connect to your EC2 instance. Create a shell script named
-```bash
-sudo vi install_jenkins.sh
-```
-Paste the following script:
-#!/bin/bash
-sudo apt update -y
-wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
-echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
-sudo apt update -y
-sudo apt install temurin-17-jdk -y
-/usr/bin/java --version
-curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt-get update -y
-sudo apt-get install jenkins -y
-sudo systemctl start jenkins
-sudo systemctl status jenkins
-
-Save and exit the text editor.
-Make the script executable:
-sudo chmod +x install_jenkins.sh
-
-Run the script:
-./install_jenkins.sh
-
-The script will install Jenkins and start the Jenkins service.
-You will need to go to your AWS EC2 Security Group and open Inbound Port 8080 since Jenkins works on Port 8080.
-Now, grab your Public IP Address
-<EC2 Public IP Address:8080>
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-
-
-
-Now, install the suggested plugins.
-
-Jenkins will now get installed and install all the libraries.
-Create an admin user
-
-Click on save and continue.
-Jenkins Dashboard
+<div>
+    <h2><strong>STEPS:</strong></h2>
+  <p>Step 1: Launch an Ubuntu 22.04 instance for Jenkins</p>
+  <p>Log into AWS Console: Sign in to your AWS account.
+   Launch an Instance:
+   Choose “EC2” from services. Click “Launch Instance.”
+   Choose an AMI: Select an Ubuntu image.
+   Choose an Instance Type: Pick “t2.large.”
+   Key Pair: Choose an existing key pair or create a new one.
+   <strong>Configure Security Group:</strong>
+   Create a new security group. Add rules for HTTP, and HTTPS, and open all ports for learning purposes.
+   </p><br><strong>Add Storage: </strong>Allocate at least 20 GB of storage.
+   <strong>Launch Instance: Review and launch the instance.
+   Access Your Instance:</strong> Use SSH to connect to your instance with the private key.<br>
+   <i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i><br>
+   <p><strong>Connect to Your EC2 Instance and Install Jenkins:</strong><br>
+    Use MobaXterm or PuTTY to connect to your EC2 instance. Create a shell script named
+    </p><br>
+     ```bash
+       sudo vi install_jenkins.sh
+      ```
+     <p>Paste the following script:
+     </p>
+    ```bash
+       #!/bin/bash
+      sudo apt update -y
+      wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
+      echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
+      sudo apt update -y
+      sudo apt install temurin-17-jdk -y
+      /usr/bin/java --version
+      curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+      echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+      sudo apt-get update -y
+      sudo apt-get install jenkins -y
+      sudo systemctl start jenkins
+      sudo systemctl status jenkins
+    ```
+    <p>Save and exit the text editor.Make the script executable:<br>
+    ```bash
+    sudo chmod +x install_jenkins.sh
+    ```
+     </p>
+     <p>Run the script:</p><br>
+     ```bash
+      ./install_jenkins.sh
+     ```
+      <p>The script will install Jenkins and start the Jenkins service.
+      You will need to go to your AWS EC2 Security Group and open Inbound Port 8080 since Jenkins works on Port 8080.
+      Now, grab your Public IP Address
+      <EC2 Public IP Address:8080>
+      </P>
+      ```bash
+      sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+      ```
+      Now, install the suggested plugins.<br>
+      Jenkins will now get installed and install all the libraries.
+      <p>Create an admin user</p>
+      <p>Click on save and continue.
+       Jenkins Dashboard</p>
+</div>
+  
 
 Step2A: Install Docker on the Jenkins machine
 Run the below commands to install the docker
