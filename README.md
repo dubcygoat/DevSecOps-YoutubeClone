@@ -31,6 +31,7 @@ Normal Jenkinsfile you can use this one without the shared library
    <p><strong>Connect to Your EC2 Instance and Install Jenkins:</strong><br>
     Use MobaXterm or PuTTY to connect to your EC2 instance. Create a shell script named
     </p><br>
+    </div>
 
 ```bash
 sudo vi install_jenkins.sh
@@ -52,32 +53,30 @@ sudo vi install_jenkins.sh
       sudo systemctl start jenkins
       sudo systemctl status jenkins
 ```
-<p>Save and exit the text editor.Make the script executable:<br>
+<p>Save and exit the text editor.Make the script executable:
 
 ```bash
 sudo chmod +x install_jenkins.sh
 ```
 </p>
-<p>Run the script:</p><br>
-
+<p>Run the script:</p>
 ```bash
 ./install_jenkins.sh
 ```
-      <p>The script will install Jenkins and start the Jenkins service.
-      You will need to go to your AWS EC2 Security Group and open Inbound Port 8080 since Jenkins works on Port 8080.
-      Now, grab your Public IP Address
-      <EC2 Public IP Address:8080>
-      </P>
-      ```bash
+<p>The script will install Jenkins and start the Jenkins service.
+You will need to go to your AWS EC2 Security Group and open Inbound Port 8080 since Jenkins works on Port 8080.
+Now, grab your Public IP Address
+<EC2 Public IP Address:8080>
+</P>
+
+```bash
       sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-      ```
-      Now, install the suggested plugins.<br>
-      Jenkins will now get installed and install all the libraries.
-      <p>Create an admin user</p>
-      <p>Click on save and continue.
-       Jenkins Dashboard</p>
-</div>
-  
+ ```
+<p>Now, install the suggested plugins.</p><br>
+Jenkins will now get installed and install all the libraries.<br>
+<p>Create an admin user</p>
+<p>Click on save and continue onJenkins Dashboard</p>
+
 
 Step2A: Install Docker on the Jenkins machine
 Run the below commands to install the docker
