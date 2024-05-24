@@ -15,7 +15,7 @@ Github Repo: https://github.com/dubcygoat/Youtube-clone-app.git
 Normal Jenkinsfile you can use this one without the shared library
 <div>
     <h2><strong>STEPS:</strong></h2>
-  <p>Step 1: Launch an Ubuntu 22.04 instance for Jenkins</p>
+  <p><strong>Step 1:</strong> Launch an Ubuntu 22.04 instance for Jenkins</p>
   <p>Log into AWS Console: Sign in to your AWS account.
    Launch an Instance:
    Choose “EC2” from services. Click “Launch Instance.”
@@ -28,9 +28,8 @@ Normal Jenkinsfile you can use this one without the shared library
    <strong>Launch Instance: Review and launch the instance.
    Access Your Instance:</strong> Use SSH to connect to your instance with the private key.<br>
    <i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i><br>
-   <p><strong>Connect to Your EC2 Instance and Install Jenkins:</strong><br>
-    Use MobaXterm or PuTTY to connect to your EC2 instance. Create a shell script named
-    </p><br>
+   <p><strong>Connect to Your EC2 Instance and Install Jenkins:</strong> </p>
+   <p>Use MobaXterm or PuTTY to connect to your EC2 instance. Create a shell script named.</p>
     </div>
 
 ```bash
@@ -39,19 +38,19 @@ sudo vi install_jenkins.sh
 <p>Paste the following script:</p>
 
 ```bash
-       #!/bin/bash
-      sudo apt update -y
-      wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
-      echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
-      sudo apt update -y
-      sudo apt install temurin-17-jdk -y
-      /usr/bin/java --version
-      curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-      echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
-      sudo apt-get update -y
-      sudo apt-get install jenkins -y
-      sudo systemctl start jenkins
-      sudo systemctl status jenkins
+#!/bin/bash
+sudo apt update -y
+wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
+echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
+sudo apt update -y
+sudo apt install temurin-17-jdk -y
+/usr/bin/java --version
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install jenkins -y
+sudo systemctl start jenkins
+sudo systemctl status jenkins
 ```
 <p>Save and exit the text editor.Make the script executable:
 
@@ -60,6 +59,7 @@ sudo chmod +x install_jenkins.sh
 ```
 </p>
 <p>Run the script:</p>
+
 ```bash
 ./install_jenkins.sh
 ```
@@ -70,29 +70,33 @@ Now, grab your Public IP Address
 </P>
 
 ```bash
-      sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
  ```
-<p>Now, install the suggested plugins.</p><br>
-Jenkins will now get installed and install all the libraries.<br>
+<p>Now, install the suggested plugins.</p>
+<p>Jenkins will now get installed and install all the libraries.
+</p>
 <p>Create an admin user</p>
 <p>Click on save and continue onJenkins Dashboard</p>
 
 
-Step2A: Install Docker on the Jenkins machine
-Run the below commands to install the docker
+<p><strong>Step2A:</strong> Install Docker on the Jenkins machine
+<p>Run the below commands to install the docker</p>
+
+```bash
 sudo apt-get update
 sudo apt-get install docker.io -y
 sudo usermod -aG docker $USER   #my case is ubuntu
 newgrp docker
 sudo chmod 777 /var/run/docker.sock
+```
+<p>After the docker installation, we will create a Sonarqube container (Remember to add 9000 ports in the security group).</p>
+<p>Run this command on your EC2 instance to create a SonarQube container:</P>
 
-After the docker installation, we will create a Sonarqube container (Remember to add 9000 ports in the security group).
-Run this command on your EC2 instance to create a SonarQube container:
+```bash
 docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
-
-
-Now copy the IP address of the ec2 instance
-<ec2-public-ip:9000>
+```
+<p>Now copy the IP address of the ec2 instance
+<ec2-public-ip:9000></P>
 
 
 Enter username and password, click on login and change password
