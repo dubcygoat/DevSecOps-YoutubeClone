@@ -35,9 +35,9 @@ Normal Jenkinsfile you can use this one without the shared library
 ```bash
 sudo vi install_jenkins.sh
 ```
-     <p>Paste the following script:
-     </p>
-    ```bash
+<p>Paste the following script:</p>
+
+```bash
        #!/bin/bash
       sudo apt update -y
       wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
@@ -51,16 +51,18 @@ sudo vi install_jenkins.sh
       sudo apt-get install jenkins -y
       sudo systemctl start jenkins
       sudo systemctl status jenkins
-    ```
-    <p>Save and exit the text editor.Make the script executable:<br>
-    ```bash
-    sudo chmod +x install_jenkins.sh
-    ```
-     </p>
-     <p>Run the script:</p><br>
-     ```bash
-      ./install_jenkins.sh
-     ```
+```
+<p>Save and exit the text editor.Make the script executable:<br>
+
+```bash
+sudo chmod +x install_jenkins.sh
+```
+</p>
+<p>Run the script:</p><br>
+
+```bash
+./install_jenkins.sh
+```
       <p>The script will install Jenkins and start the Jenkins service.
       You will need to go to your AWS EC2 Security Group and open Inbound Port 8080 since Jenkins works on Port 8080.
       Now, grab your Public IP Address
