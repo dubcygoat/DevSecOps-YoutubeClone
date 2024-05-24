@@ -15,7 +15,7 @@ Github Repo: https://github.com/dubcygoat/Youtube-clone-app.git
 
 Normal Jenkinsfile you can use this one without the shared library
 
-<h2>STEPS:</h2>
+<h2><strong>STEPS:</strong></h2>
 <p>Step 1: Launch an Ubuntu 22.04 instance for Jenkins</p>
 Log into AWS Console: Sign in to your AWS account.
 Launch an Instance:
@@ -24,15 +24,16 @@ Choose an AMI: Select an Ubuntu image.
 Choose an Instance Type: Pick “t2.large.”
 Key Pair: Choose an existing key pair or create a new one.
 Configure Security Group:
-Create a new security group. Add rules for HTTP, and HTTPS, and open all ports for learning purposes. Add Storage: Allocate at least 20 GB of storage.
-Launch Instance: Review and launch the instance.
-Access Your Instance: Use SSH to connect to your instance with the private key.
-Keep in mind, that opening all ports is not recommended for production environments; it’s just for educational purposes.
+Create a new security group. Add rules for HTTP, and HTTPS, and open all ports for learning purposes. <strong>Add Storage: </strong>Allocate at least 20 GB of storage.
+<strong>Launch Instance: Review and launch the instance.
+Access Your Instance:</strong> Use SSH to connect to your instance with the private key.
+<i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i><br>
 
-Connect to Your EC2 Instance and Install Jenkins:
+<strong>Connect to Your EC2 Instance and Install Jenkins:</strong>
 Use MobaXterm or PuTTY to connect to your EC2 instance. Create a shell script named
+```bash
 sudo vi install_jenkins.sh
-
+```
 Paste the following script:
 #!/bin/bash
 sudo apt update -y
