@@ -12,7 +12,7 @@ This project focuses on deploying a YouTube clone application using a DevSecOps 
 
 Github Repo: https://github.com/dubcygoat/Youtube-clone-app.git
 
-Normal Jenkinsfile you can use this one without the shared library <a href= "jenkinsfile.txt" alt="Jenkinsfile"></a>
+Normal Jenkinsfile you can use this one without the shared library <a href= "https://github.com/dubcygoat/DevSecOps-YoutubeClone/blob/main/jenkinsfile.txt" alt="Jenkinsfile"></a>
 <div>
     <h2><strong>STEPS:</strong></h2>
   <p><strong>Step 1:</strong> Launch an Ubuntu 22.04 instance for Jenkins</p>
