@@ -31,8 +31,11 @@ Normal Jenkinsfile you can use this one without the shared library
    <p><strong>Connect to Your EC2 Instance and Install Jenkins:</strong><br>
     Use MobaXterm or PuTTY to connect to your EC2 instance. Create a shell script named
     </p><br>
+    
      ```bash
+
        sudo vi install_jenkins.sh
+
       ```
      <p>Paste the following script:
      </p>
