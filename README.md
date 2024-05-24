@@ -12,25 +12,27 @@ This project focuses on deploying a YouTube clone application using a DevSecOps 
 
 Github Repo: https://github.com/dubcygoat/Youtube-clone-app.git
 
-<div>Normal Jenkinsfile you can use this one without the shared library <a href= "https://github.com/dubcygoat/DevSecOps-YoutubeClone/blob/main/jenkinsfile.txt" alt="Jenkinsfile"></a></div>
+Normal Jenkinsfile you can use this one without the shared library: [https://github.com/dubcygoat/DevSecOps-YoutubeClone/blob/main/jenkinsfile.txt]
+
 <div>
-    <h2><strong>STEPS:</strong></h2>
+  <h2><strong>STEPS:</strong></h2>
   <p><strong>Step 1:</strong> Launch an Ubuntu 22.04 instance for Jenkins</p>
   <p>Log into AWS Console: Sign in to your AWS account.
    Launch an Instance:
    Choose “EC2” from services. Click “Launch Instance.”
    Choose an AMI: Select an Ubuntu image.
    Choose an Instance Type: Pick “t2.large.”
-   Key Pair: Choose an existing key pair or create a new one.
+   Key Pair: Choose an existing key pair or create a new one.<br>
    <strong>Configure Security Group:</strong>
    Create a new security group. Add rules for HTTP, and HTTPS, and open all ports for learning purposes.
-   </p><br><strong>Add Storage: </strong>Allocate at least 20 GB of storage.
-   <strong>Launch Instance: Review and launch the instance.
-   Access Your Instance:</strong> Use SSH to connect to your instance with the private key.<br>
-   <i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i><br>
-   <p><strong>Connect to Your EC2 Instance and Install Jenkins:</strong> </p>
-   <p>Use MobaXterm or PuTTY to connect to your EC2 instance. Create a shell script named.</p>
-    </div>
+   </p>
+   <p><strong>Add Storage: </strong>Allocate at least 20 GB of storage.</p>
+   <p><strong>Launch Instance:</strong> Review and launch the instance.</p>
+   <p><strong>Access Your Instance:</strong> Use SSH to connect to your instance with the private key.</p>
+   <i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i>
+   <p><strong>Connect to Your EC2 Instance and Install Jenkins:</ strong><br>Use MobaXterm or PuTTY to connect to your EC2 instance.</p>
+   <p>Create a shell script named.</p>
+</div>
 
 ```bash
 sudo vi install_jenkins.sh
@@ -76,10 +78,10 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 <p>Jenkins will now get installed and install all the libraries.
 </p>
 <p>Create an admin user</p>
-<p>Click on save and continue onJenkins Dashboard</p>
+<p>Click on save and continue on Jenkins Dashboard</p><br>
 
 
-<p><strong>Step2A:</strong> Install Docker on the Jenkins machine
+<p><strong>Step 2A:</strong> Install Docker on the Jenkins machine
 <p>Run the below commands to install the docker</p>
 
 ```bash
@@ -106,7 +108,7 @@ password admin
 
 Update New password, This is Sonar Dashboard.
 
-Step2B: Install Trivy on Jenkins machine
+Step 2B: Install Trivy on Jenkins machine
 Create a shell script
 sudo vi trivy.sh
 
