@@ -17,8 +17,8 @@ Normal Jenkinsfile you can use this one without the shared library: [https://git
 <div>
   <h2><strong>STEPS:</strong></h2>
   <p><strong>Step 1:</strong> Launch an Ubuntu 22.04 instance for Jenkins</p>
-  <p>Log into AWS Console: Sign in to your AWS account.
-  <p><strong>Launch an Instance:</strong>Choose “EC2” from services. Click “Launch Instance.”</p>
+  <p><strong>Log into AWS Console:</strong> Sign in to your AWS account.
+  <p><strong>Launch an Instance:</strong> Choose “EC2” from services. Click “Launch Instance.”</p>
   <p><strong>Choose an AMI:</strong> Select an Ubuntu image.</p>
   <p><strong>Choose an Instance Type:</strong> Pick “t2.large.” </p>
   <p><strong>Key Pair:</strong> Choose an existing key pair or create a new one.</p>
