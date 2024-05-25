@@ -28,10 +28,9 @@ Normal Jenkinsfile you can use this one without the shared library: [https://git
    </p>
    <p><strong>Add Storage: </strong>Allocate at least 20 GB of storage.</p>
    <p><strong>Launch Instance:</strong> Review and launch the instance.</p>
-   <p><strong>Access Your Instance:</strong> Use SSH to connect to your instance with the private key.</p>
-   <i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i>
-   <p><strong>Connect to Your EC2 Instance and Install Jenkins:</ strong><br>Use MobaXterm or PuTTY to connect to your EC2 instance.</p>
-   <p>Create a shell script named.</p>
+   <p><strong>Access Your Instance:</strong> Use SSH to connect to your instance with the private key.
+   <i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i></p>
+   <p><strong>Connect to Your EC2 Instance and Install Jenkins:</strong>Use MobaXterm or PuTTY to connect to your EC2 instance or just connect directly to your EC2 instance then create a shell script named install_jenkins.</p>
 </div>
 
 ```bash
@@ -54,12 +53,13 @@ sudo apt-get install jenkins -y
 sudo systemctl start jenkins
 sudo systemctl status jenkins
 ```
-<p>Save and exit the text editor.Make the script executable:
+<p>Save and exit the text editor.</p>
+<p>Make the script executable:</p>
 
 ```bash
 sudo chmod +x install_jenkins.sh
 ```
-</p>
+
 <p>Run the script:</p>
 
 ```bash
@@ -78,10 +78,10 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 <p>Jenkins will now get installed and install all the libraries.
 </p>
 <p>Create an admin user</p>
-<p>Click on save and continue on Jenkins Dashboard</p><br>
+<p>Click on save and continue on Jenkins Dashboard.</p><br>
 
 
-<p><strong>Step 2A:</strong> Install Docker on the Jenkins machine
+<p><strong>Step 2A:</strong> Install Docker on the Jenkins machine</p>
 <p>Run the below commands to install the docker</p>
 
 ```bash
