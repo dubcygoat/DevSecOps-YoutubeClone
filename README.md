@@ -34,9 +34,10 @@ Normal Jenkinsfile you can use this one without the shared library: [https://git
 </div>
 
 ```bash
-sudo vi install_jenkins.sh
+sudo nano install_jenkins.sh
 ```
-<p>Paste the following script:</p>
+
+<p>Then paste the following script below in the install_jenkins file:</p>
 
 ```bash
 #!/bin/bash
