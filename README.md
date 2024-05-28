@@ -370,8 +370,11 @@ Create a cleanWorkspace.groovy file and add the below code<br>
 def call() {
     cleanWs()
 }
+```
 
-Create checkoutGit.groovy file and add the below code
+<p>Create checkoutGit.groovy file and add the below code</p>
+
+```bash
 def call(String gitUrl, String gitBranch) {
     checkout([
         $class: 'GitSCM',
