@@ -107,8 +107,10 @@ password admin</p>
 
 <p><strong>Step 2B:</strong> Install Trivy on Jenkins machine</p>
 <p>Create a shell script</p>
-<p>sudo vi trivy.sh</p>
 
+```bash
+sudo vi trivy.sh
+```
 <p>Paste the below commands</p>
 
 ```bash
