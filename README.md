@@ -28,7 +28,7 @@ Normal Jenkinsfile you can use this one without the shared library: [https://git
    <p><strong>Add Storage: </strong>Allocate at least 20 GB of storage.</p>
    <p><strong>Launch Instance:</strong> Review and launch the instance.</p>
    <p><strong>Access Your Instance:</strong> Use SSH to connect to your instance with the private key.
-   <i><strong>Note:</strong>that opening all ports is not recommended for production environments; it’s just for educational purposes.</i></p>
+   <i><strong>Note:</strong> that opening all ports is not recommended for production environments; it’s just for educational purposes.</i></p>
    <p><strong>Connect to Your EC2 Instance and Install Jenkins:</strong>Use MobaXterm or PuTTY to connect to your EC2 instance or just connect directly to your EC2 instance then create a shell script named install_jenkins.</p>
 </div>
 
@@ -100,64 +100,70 @@ docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 <p>Now copy the IP address of the ec2 instance
 <ec2-public-ip:9000></P>
 
+<p>Enter username and password, click on login and change password<br>username admin
+password admin</p>
 
-Enter username and password, click on login and change password
-username admin
-password admin
+<p>Update New password, This is Sonar Dashboard.</p>
 
+<p><strong>Step 2B:</strong> Install Trivy on Jenkins machine</p>
+<p>Create a shell script</p>
+<p>sudo vi trivy.sh</p>
 
-Update New password, This is Sonar Dashboard.
+<p>Paste the below commands</p>
 
-Step 2B: Install Trivy on Jenkins machine
-Create a shell script
-sudo vi trivy.sh
-
-Paste the below commands
+```bash
 sudo apt-get install wget apt-transport-https gnupg lsb-release -y
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
 sudo apt-get update
 sudo apt-get install trivy -y
+```
+<p>Provide executable permissions and run the shell script</p>
 
-Provide executable permissions and run the shell script
+```bash
 sudo chmod +x trivy.sh
 ./trivy.sh
+```
+<p>This will install Trivy on our Jenkins machine.</p>
 
-This will install Trivy on our Jenkins machine.
-Step3A: Launch an Ubuntu instance for Splunk
-SPLUNK BLOG LINK
-SPLUNK FULL VIDEO ON YOUTUBE
-Step 1: Launch Instances
-Log in to your AWS console or your chosen cloud provider.
-Navigate to the EC2 service and launch Ubuntu 22.04 instances. Ensure you select T2.medium as the instance type and allocate 24GB of storage to each instance.
-Step 2: Install Splunk
-At this point, the first machine is set up with Jenkins. You can now move to the second machine and proceed with the installation of Splunk.
-Connect to your second instance using Putty or Mobaxtreme.To download and install Splunk on your Ubuntu instance use the wget command, use the following command:
+<p><strong>Step3A:</strong> Launch an Ubuntu instance for Splunk</p>
 
+<p><strong>Step 1:</strong> Launch Instances</p>
+<p>Log in to your AWS console or your chosen cloud provider.
+Navigate to the EC2 service and launch Ubuntu 22.04 instances. Ensure you select T2.medium as the instance type and allocate 24GB of storage to each instance.</p>
 
+<p><strong>Step 2:</strong> Install Splunk</p>
+<p>At this point, the first machine is set up with Jenkins. You can now move to the second machine and proceed with the installation of Splunk.</p>
+<p>Connect to your second instance using Putty or Mobaxtreme.To download and install Splunk on your Ubuntu instance use the wget command, use the following command:</p>
 
-
+```bash
  wget -O splunk-9.1.1-64e843ea36b1-linux-2.6-amd64.deb "https://download.splunk.com/products/splunk/releases/9.1.1/linux/splunk-9.1.1-64e843ea36b1-linux-2.6-amd64.deb"
- 
-To Depackage the Splunk use the below command
-sudo dpkg -i splunk-9.1.1-64e843ea36b1-linux-2.6-amd64.deb
+ ```
 
+<p>To Depackage the Splunk use the below command</p>
+
+```bash
+sudo dpkg -i splunk-9.1.1-64e843ea36b1-linux-2.6-amd64.deb
 
 sudo /opt/splunk/bin/splunk enable boot-start
 
-By running this command, you ensure that Splunk Enterprise is configured to start automatically when your Ubuntu system boots, allowing you to seamlessly integrate it into your workflow.
-Please note that after running this command, you should follow the on-screen prompts to accept the terms and complete the setup to 100%.
+```
+<p>By running this command, you ensure that Splunk Enterprise is configured to start automatically when your Ubuntu system boots, allowing you to seamlessly integrate it into your workflow.
+Please note that after running this command, you should follow the on-screen prompts to accept the terms and complete the setup to 100%.</p>
 
-After completing the initial setup and accepting the terms, you’ll be prompted to create an admin user.
-Administrator Username: Choose a username for the admin account. This should be a unique and secure username.
-Administrator Password: Set a strong and secure password for the admin account. It’s important to choose a password that combines upper and lower-case letters, numbers, and special characters for enhanced security.
-Confirm your password to ensure it matches the one you initially entered.
-By creating an administrator username and password, you’ll have full access to your Splunk instance, allowing you to configure and manage it effectively.
+<p>After completing the initial setup and accepting the terms, you’ll be prompted to create an admin user.</p>
+<p>Administrator Username: Choose a username for the admin account. This should be a unique and secure username.</p>
+<p>Administrator Password: Set a strong and secure password for the admin account. It’s important to choose a password that combines upper and lower-case letters, numbers, and special characters for enhanced security.</p>
+<p>Confirm your password to ensure it matches the one you initially entered.</p>
+<p>By creating an administrator username and password, you’ll have full access to your Splunk instance, allowing you to configure and manage it effectively.</p>
 
-The command sudo ufw allow OpenSSH is used to allow incoming SSH traffic through the UFW (Uncomplicated Firewall) on your Ubuntu system. It’s essential for enabling SSH access to your server.
+<p>The command sudo ufw allow OpenSSH is used to allow incoming SSH traffic through the UFW (Uncomplicated Firewall) on your Ubuntu system. It’s essential for enabling SSH access to your server.</p>
+
+```bash
 sudo ufw allow openSSH
+```
 
-By running this command, you ensure that SSH access is permitted through your firewall, which is crucial for remote server management and administration.
+<p>By running this command, you ensure that SSH access is permitted through your firewall, which is crucial for remote server management and administration.</p>
 
 The command sudo ufw allow 8000 is used to allow incoming network traffic on port 8000 through the UFW (Uncomplicated Firewall) on your Ubuntu system. It permits access to a specific port for network services or applications.
 sudo ufw allow 8000
