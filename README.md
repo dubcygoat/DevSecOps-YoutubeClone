@@ -268,8 +268,8 @@ Click on Settings –> Server controls</p>
 <p>Now restart Jenkins and log in again.<br>
 <jenkins-ip:8080/restart> #this will restart jenkins</p>
 
-<p>Now go to Splunk and click on the Jenkins app and you will get this output monitoring</p>
-![Sample image](image.jpg)
+<p>Now go to Splunk and click on the Jenkins app and you will get this output monitoring
+![Sample image](image.jpg)</p>
 
 
 <p><strong>Step4A:</strong>Integrate Slack for Notifications<br>
@@ -340,15 +340,17 @@ post {
 <p><strong>Step5A:</strong> Start Job<br>
 Go to Jenkins dashboard and click on New Item.<br>
 Provide a name for the Job & click on Pipeline and click on OK.<br>
-Step5B: Create a Jenkins shared library in GitHub<br>
+<p><strong>Step5B:</strong> Create a Jenkins shared library in GitHub<br>
 Create a new repository in GitHub named Jenkins_shared_library.</p>
 
-Connect to your VS Code
-Create a directory named Jenkins_shared_library
-Create a Vars directory inside it
+<p>Connect to your VS Code</p>
+<p>Create a directory named Jenkins_shared_library</p>
+<p>Create a Vars directory inside it</p>
 
-Open Terminal
-Run the below commands to push to GitHub
+<p>Open Terminal</p>
+<p>Run the below commands to push to GitHub</p>
+
+```bash
 echo "# Jenkins_shared_library" >> README.md
 git init
 git add README.md
@@ -357,10 +359,14 @@ git branch -M main
 # make sure to change your repo Url here
 git remote add origin https://github.com/Aj7Ay/Jenkins_shared_library.git
 git push -u origin main
+```
 
-Now, Let’s Write a Groovy script for our Pipeline
-Create a cleanWorkspace.groovy file and add the below code
-#cleanWorkspace.groovy //cleans workspace
+<p>Now, Let’s Write a Groovy script for our Pipeline<br>
+Create a cleanWorkspace.groovy file and add the below code<br>
+
+#cleanWorkspace.groovy //cleans workspace</p>
+
+```bash
 def call() {
     cleanWs()
 }
@@ -373,23 +379,29 @@ def call(String gitUrl, String gitBranch) {
         userRemoteConfigs: [[url: gitUrl]]
     ])
 }
+```
 
-Now push them to GitHub using the below commands from vs code
+<p>Now push them to GitHub using the below commands from vs code</p>
+
+```bash
 git add .
 git commit -m "message"
 git push origin main
+```
 
-Step5C: Add Jenkins shared library to Jenkins system
-Go to Jenkins Dashboard
-Click on Manage Jenkins –> system
-Search for Global Pipeline Libraries and click on Add
+<p><strong>Step5C:</strong>  Add Jenkins shared library to Jenkins system<br>
+Go to Jenkins Dashboard<br>
+Click on Manage Jenkins –> system<br>
+Search for Global Pipeline Libraries and click on Add</p>
 
-Now Provide a name that we have to call in our pipeline
+<p>Now Provide a name that we have to call in our pipeline</p>
 
 
-Click apply and save
-Step5D: Run Pipeline
-Go to Jenkins Dashboard again & select the job and add the below pipeline
+<p>Click apply and save</p>
+<p><strong>Step5D: Run Pipeline<br>
+Go to Jenkins Dashboard again & select the job and add the below pipeline</p>
+
+```bash
 @Library('Jenkins_shared_library') _  #name used in jenkins system for library
 def COLOR_MAP = [
     'FAILURE' : 'danger',
@@ -424,9 +436,9 @@ pipeline{
            }
        }
    }
-
-Build with parameters and build
-Stage view
+```
+<p>Build with parameters and build<br>
+Stage view</p>
 
 Step6: Install Plugins like JDK, Sonarqube Scanner, NodeJs
 Step6A: Install Plugin
@@ -1033,68 +1045,6 @@ If you found this tutorial helpful, please share it with your network, and consi
 Thank you for joining us on this deployment journey. We wish you the best of luck in your application deployment endeavours. Stay curious, keep learning, and continue to explore the exciting world of DevSecOps, containers, and orchestration!
 Here’s to your success in the world of tech and DevSecOps!
 		
-				 			Categories Blog 		 			
-Netflix Clone CI/CD with Monitoring | Jenkins | Docker| Kubernetes| Monitoring | DevSecOps
-GitHub Actions: Netflix Deployment Powered by DevSecOps
-		 				 			
-			
-				
-	
-1 thought on “YouTube Clone App with DevSecOps and Jenkins Shared Library”
-		
-			 		 			 				 										
- 						
- 							manoj						
- 													
- 																	 										13 March 2024 at 21:00									 															
- 												
- 									 				
- 					
-Hi,
-
- This was great. I learned a lot here. Keep up the good work.
- Reply				
- 			 			
-		 			
-		
-Leave a comment
-Comment
-Name Email Website
-Save my name, email, and website in this browser for the next time I comment.
-	
-	
-			
-					 	
-	
-	
-		
- 
-Search
-LinkedIN
-Telegram
-YouTube
-Recent Posts
-
-HOW TO INSTALL JFROG ARTIFACTORY ON UBUNTU 22.O4
-
-Configuring a Static Website With S3 And CloudFront
-
-ScriptVault: A Wiki of Installation Scripts
-
-Continuous Deployment and Continuous Monitoring
-
-Open Source Project: DevSecOps for OpenAI Chatbot UI Deployment | DevSecOps
-
-Deploy Reddit to AWS EKS | Trivy scans Kubernetes | DevSecOps
-
-Mastering IPv6: A Comprehensive Guide to Configuring and Utilizing IPv6 for AWS VPC and EC2
-
-GitHub Actions Scouting Myntra App | DevSecOps
-	
-	
-	
-© Mr Cloud Book | All rights reserved
-Privacy Policy | Disclaimer | About Us | Contact Us
 	
 					 				 					 									 			
 					 				 					 									 			
