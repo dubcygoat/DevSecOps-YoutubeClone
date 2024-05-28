@@ -272,51 +272,53 @@ Click on Settings –> Server controls</p>
 ![Sample image](image.jpg)
 
 
-Step4A: Integrate Slack for Notifications
-SLACK BLOG
-SLACK FULL VIDEO ON YOUTUBE
-Create a Slack account and create a channel Named Jenkins
+<p><strong>Step4A:</strong>Integrate Slack for Notifications<br>
+Create a Slack account and create a channel Named Jenkins</p>
 
-Step4B: Install the Jenkins CI app on Slack
-Go to Slack and click on your name
-Select Settings and Administration
-Click on Manage apps
+<p><strong>Step4B:</strong> Install the Jenkins CI app on Slack
+Go to Slack and click on your name<br>
+Select Settings and Administration<br>
+Click on Manage apps</p>
 
-It will open a new tab
-Search for Jenkins CI and click on it
+<p>It will open a new tab<br>
+Search for Jenkins CI and click on it</p>
 
-It will open another tab
-Click on Add to Slack
+<p>It will open another tab<br>
+Click on Add to Slack</p>
 
-Now choose your Slack channel
-Click on Add Jenkins CI integration.
+<p>Now choose your Slack channel<br>
+Click on Add Jenkins CI integration.</p>
 
-You will be redirected to this page
+<p>You will be redirected to this page</p>
 
-Copy the team subdomain and integration token credential ID for later use.
+<p>Copy the team subdomain and integration token credential ID for later use.</p>
 
 
-Install Slack Notification Plugin in Jenkins
-Go to Jenkins Dashboard
-Click on manage Jenkins –> Plugins –> Available plugins
-Search for Slack Notification and install
+<p>Install Slack Notification Plugin in Jenkins<br>
+Go to Jenkins Dashboard<br>
+Click on manage Jenkins –> Plugins –> Available plugins<br>
+Search for Slack Notification and install</p>
 
-Click on Manage Jenkins –> Credentials –> Global
-Select kind as Secret Text
-At Secret Section Provide Your Slack integration token credential ID
-Id and description are optional and create
-
-
-Click on Manage Jenkins –> System
-Go to the end of the page
-Workspace –> team subdomain
-Credential –> Select your Credential for Slack
-Default channel –> Provide your Channel name
-Test connection
+<p>Click on Manage Jenkins –> Credentials –> Global<br>
+Select kind as Secret Text<br>
+At Secret Section Provide Your Slack integration token credential ID<br>
+Id and description are optional and create</p>
 
 
-Click on Apply and save
-Add this to the pipeline
+<p>Click on Manage Jenkins –> System<br>
+Go to the end of the page<br>
+Workspace –> team subdomain<br>
+Credential –> Select your Credential for Slack<br>
+Default channel –> Provide your Channel name<br>
+Test connection</p>
+
+
+
+<p>Click on Apply and save<br>
+Add this to the pipeline</p>
+
+
+```bash
 def COLOR_MAP = [
     'FAILURE' : 'danger',
     'SUCCESS' : 'good'
@@ -332,13 +334,14 @@ post {
         )
     }
 }
+```
+<p>You will get a Notification in Slack</p>
 
-You will get a Notification in Slack
-Step5A: Start Job
-Go to Jenkins dashboard and click on New Item.
-Provide a name for the Job & click on Pipeline and click on OK.
-Step5B: Create a Jenkins shared library in GitHub
-Create a new repository in GitHub named Jenkins_shared_library.
+<p><strong>Step5A:</strong> Start Job<br>
+Go to Jenkins dashboard and click on New Item.<br>
+Provide a name for the Job & click on Pipeline and click on OK.<br>
+Step5B: Create a Jenkins shared library in GitHub<br>
+Create a new repository in GitHub named Jenkins_shared_library.</p>
 
 Connect to your VS Code
 Create a directory named Jenkins_shared_library
