@@ -154,8 +154,8 @@ sudo /opt/splunk/bin/splunk enable boot-start
 Please note that after running this command, you should follow the on-screen prompts to accept the terms and complete the setup to 100%.</p>
 
 <p>After completing the initial setup and accepting the terms, you’ll be prompted to create an admin user.</p>
-<p>Administrator Username: Choose a username for the admin account. This should be a unique and secure username.</p>
-<p>Administrator Password: Set a strong and secure password for the admin account. It’s important to choose a password that combines upper and lower-case letters, numbers, and special characters for enhanced security.</p>
+<p><strong>Administrator Username:</strong> Choose a username for the admin account. This should be a unique and secure username.</p>
+<p><strong>Administrator Password:</strong> Set a strong and secure password for the admin account. It’s important to choose a password that combines upper and lower-case letters, numbers, and special characters for enhanced security.</p>
 <p>Confirm your password to ensure it matches the one you initially entered.</p>
 <p>By creating an administrator username and password, you’ll have full access to your Splunk instance, allowing you to configure and manage it effectively.</p>
 
@@ -167,100 +167,109 @@ sudo ufw allow openSSH
 
 <p>By running this command, you ensure that SSH access is permitted through your firewall, which is crucial for remote server management and administration.</p>
 
-The command sudo ufw allow 8000 is used to allow incoming network traffic on port 8000 through the UFW (Uncomplicated Firewall) on your Ubuntu system. It permits access to a specific port for network services or applications.
+<p><i>The command sudo ufw allow 8000 is used to allow incoming network traffic on port 8000 through the UFW (Uncomplicated Firewall) on your Ubuntu system. It permits access to a specific port for network services or applications.</i></p>
+
+```bash
 sudo ufw allow 8000
+```
 
+<p><i>sudo ufw status: This command allows you to check the status of your UFW firewall. It will display information about whether the firewall is active, which rules are enabled, and whether it’s set to allow or deny specific types of traffic.
+sudo ufw enable: This command is used to enable the UFW firewall if it’s not already active. Enabling the firewall ensures that the rules you’ve configured or will configure are enforced.</i></p>
+<p>By running these commands, you can both check the current status of your firewall and activate it to apply the defined rules and settings.</p>
 
-sudo ufw status: This command allows you to check the status of your UFW firewall. It will display information about whether the firewall is active, which rules are enabled, and whether it’s set to allow or deny specific types of traffic.
-sudo ufw enable: This command is used to enable the UFW firewall if it’s not already active. Enabling the firewall ensures that the rules you’ve configured or will configure are enforced.
-By running these commands, you can both check the current status of your firewall and activate it to apply the defined rules and settings.
+```bash
 sudo ufw status
 sudo ufw enable
+```
 
+<p><i>The command sudo /opt/splunk/bin/splunk start is used to start the Splunk Enterprise application on your system. When you run this command with superuser privileges (using sudo), it initiates the Splunk service, allowing you to begin using the Splunk platform for data analysis, monitoring, and other data-related tasks.</i></p>
 
-The command sudo /opt/splunk/bin/splunk start is used to start the Splunk Enterprise application on your system. When you run this command with superuser privileges (using sudo), it initiates the Splunk service, allowing you to begin using the Splunk platform for data analysis, monitoring, and other data-related tasks.
+```bash
 sudo /opt/splunk/bin/splunk start
+```
 
 
+<p>After successfully starting your Splunk instance, you can now access its web interface to start exploring and analyzing your data.</p>
+<p>Copy Your Splunk Instance Public IP Address: Navigate to your cloud provider’s console and find the public IP address of your Splunk instance.</p>
+<p>Log in with Your Credentials: You’ll be prompted to log in with the administrator username and password you created during the setup process (typically using the command sudo /opt/splunk/bin/splunk enable boot-start).
+<splunk-public-ip:8000></p>
 
-After successfully starting your Splunk instance, you can now access its web interface to start exploring and analyzing your data.
-Copy Your Splunk Instance Public IP Address: Navigate to your cloud provider’s console and find the public IP address of your Splunk instance.
-Log in with Your Credentials: You’ll be prompted to log in with the administrator username and password you created during the setup process (typically using the command sudo /opt/splunk/bin/splunk enable boot-start).
-<splunk-public-ip:8000>
+
+<p>This is the Splunk Dashboard</p>
+
+<p><strong>Step3B:</strong> Install the Splunk app for Jenkins</p>
+<p>In Splunk Dashboard<br>
+Click on Apps –> Find more apps</p>
+
+<p>Search for Jenkins in the Search bar<br>
+You will get the Splunk app for Jenkins and click on install</p>
+
+<p>You will be prompted to provide your Splunk credentials. That’s why we created a Splunk account</p>
+
+<p>Click on Agree and install<br>
+Now click on Go home</p>
+
+<p>On the homepage of Splunk, you will see Jenkins has been added</p>
 
 
-This is the Splunk Dashboard
+<p>In the Splunk web interface, go to Settings > Data Inputs.</p>
 
-Step3B: Install the Splunk app for Jenkins
-In Splunk Dashboard
-Click on Apps –> Find more apps
+<p>Click on HTTP Event Collector.</p>
 
-Search for Jenkins in the Search bar
-You will get the Splunk app for Jenkins and click on install
+<p>Click on Global Settings</p>
 
-You will be prompted to provide your Splunk credentials. That’s why we created a Splunk account
+<p>Set All tokens to enabled<br>
+Uncheck SSL enable<br>
+Use 8088 port and click on save</p>
 
-Click on Agree and install
-Now click on Go home
+<p>Now click on New token<br>
 
-On the homepage of Splunk, you will see Jenkins has been added
+Provide a Name and click on the next<br>
 
-In the Splunk web interface, go to Settings > Data Inputs.
+Click Review<br>
 
-Click on HTTP Event Collector.
+Click Submit<br>
 
-Click on Global Settings
+Click Start searching<p>
 
-Set All tokens to enabled
-Uncheck SSL enable
-Use 8088 port and click on save
+<p>Now let’s copy our token again<br>
+In the Splunk web interface, go to Settings > Data Inputs.<br>
 
-Now click on New token
+Click on the HTTP event collector<br>
 
-Provide a Name and click on the next
+Now copy your token and keep it safe</p>
 
-Click Review
+<p>Add Splunk Plugin in Jenkins<br>
+Go to Jenkins dashboard<br>
+Click on Manage Jenkins –> Plugins –> Available plugins<br>
+Search for Splunk and install it.</p>
 
-Click Submit
+<p>Again Click on Manage Jenkins –> System<br>
+Search for Splunk<br>
+Check to enable<br>
+HTTP input host as SPLUNK PUBLIC IP<br>
+HTTP token that you generated in Splunk<br>
+Jenkins IP and apply.</p>
 
-Click Start searching
+<p>Now go to Putty or Mobaxtreme and In Splunk machine run this command</p>
 
-Now let’s copy our token again
-In the Splunk web interface, go to Settings > Data Inputs.
-
-Click on the HTTP event collector
-
-Now copy your token and keep it safe
-
-Add Splunk Plugin in Jenkins
-Go to Jenkins dashboard
-Click on Manage Jenkins –> Plugins –> Available plugins
-Search for Splunk and install it.
-
-Again Click on Manage Jenkins –> System
-Search for Splunk
-Check to enable
-HTTP input host as SPLUNK PUBLIC IP
-HTTP token that you generated in Splunk
-Jenkins IP and apply.
-
-Now go to Putty or Mobaxtreme and In Splunk machine run this command
+```bash
 sudo ufw allow 8088
+```
 
+<p>Now in the Jenkins dashboard Under Splunk click on Test connection</p>
 
-Now in the Jenkins dashboard Under Splunk click on Test connection
+<p>Restart Both Splunk and Jenkins<br>
+Let’s Restart our Splunk machine<br>
+Click on Settings –> Server controls</p>
 
-Restart Both Splunk and Jenkins
-Let’s Restart our Splunk machine
-Click on Settings –> Server controls
+<p>Restart and log in again</p>
 
-Restart and log in again
+<p>Now restart Jenkins and log in again.<br>
+<jenkins-ip:8080/restart> #this will restart jenkins</p>
 
-Now restart Jenkins and log in again.
-<jenkins-ip:8080/restart> #this will restart jenkins
-
-Now go to Splunk and click on the Jenkins app and you will get this output monitoring
-Sample image.
+<p>Now go to Splunk and click on the Jenkins app and you will get this output monitoring</p>
+![Sample image](image.jpg)
 
 
 Step4A: Integrate Slack for Notifications
