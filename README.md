@@ -443,73 +443,88 @@ pipeline{
 <p>Build with parameters and build<br>
 Stage view</p>
 
-Step6: Install Plugins like JDK, Sonarqube Scanner, NodeJs
-Step6A: Install Plugin
-Goto Manage Jenkins →Plugins → Available Plugins →
-Install below plugins
-1 → Eclipse Temurin Installer (Install without restart)
-2 → SonarQube Scanner (Install without restart)
-3 → NodeJs Plugin (Install Without restart)
+<p><strong>Step6:</strong>Install Plugins like JDK, Sonarqube Scanner, NodeJs</p> 
+<p><strong>Step6A:</strong> Install Plugin<br>
+Goto Manage Jenkins →Plugins → Available Plugins →<br>
+Install below plugins<br>
+1 → Eclipse Temurin Installer (Install without restart)<br>
+2 → SonarQube Scanner (Install without restart)<br>
+3 → NodeJs Plugin (Install Without restart)</p>
 
 
-Step6B: Configure Java and Nodejs in Global Tool Configuration
-Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on Apply and Save
+<p><strong>Step6B:</strong> Configure Java and Nodejs in Global Tool Configuration<br>
+Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on<br> Apply and Save</p>
 
 
-Step6C: Configure Sonar Server in Manage Jenkins
-Grab the Public IP Address of your EC2 Instance, Sonarqube works on Port 9000, so <Public IP>:9000. Goto your Sonarqube Server. Click on Administration → Security → Users → Click on Tokens and Update Token → Give it a name → and click on Generate Token
+<p><strong>Step6C:</strong> Configure Sonar Server in Manage Jenkins<br>
+Grab the Public IP Address of your EC2 Instance, Sonarqube works on Port 9000, so <Public IP>:9000. Goto your Sonarqube Server. Click on<br> Administration → Security → Users → Click on Tokens and Update Token → Give it a name → and click on Generate Token<br>
 
-click on update Token
+click on update Token<br>
 
 Create a token with a name and generate
 
-copy Token
-Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret Text. It should look like this
+copy Token<br>
+Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret Text. It should look like this<br>
 
-You will this page once you click on create
+You will this page once you click on create<br>
 
-Now, go to Dashboard → Manage Jenkins → System and Add like the below image.
+Now, go to Dashboard → Manage Jenkins → System and Add like the below image.<br>
 
-Click on Apply and Save
-The Configure System option is used in Jenkins to configure different server
-Global Tool Configuration is used to configure different tools that we install using Plugins
-We will install a sonar scanner in the tools.
+Click on Apply and Save<br>
+The Configure System option is used in Jenkins to configure different server<br>
+Global Tool Configuration is used to configure different tools that we install using Plugins<br>
+We will install a sonar scanner in the tools.</p>
 
-In the Sonarqube Dashboard add a quality gate also
-Administration–> Configuration–>Webhooks
+<p>In the Sonarqube Dashboard add a quality gate also
+Administration–> Configuration–>Webhooks<br>
 
-Click on Create
+Click on Create<br>
 
 Add details
 #in url section of quality gate
-<http://jenkins-public-ip:8080>/sonarqube-webhook/
+<http://jenkins-public-ip:8080>/sonarqube-webhook/</p>
 
 
-Step6D: Add New stages to the pipeline
-Go to vs code and create a file sonarqubeAnalysis.groovy & add the below code and push to Jenkins shared library GitHub Repo.
+<p><strong>Step6D:</strong> Add New stages to the pipeline<br>
+Go to vs code and create a file sonarqubeAnalysis.groovy & add the<br> below code and push to Jenkins shared library GitHub Repo.</p>
+
+```bash
 def call() {
     withSonarQubeEnv('sonar-server') {
         sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Youtube -Dsonar.projectKey=Youtube '''
     }
 }
+```
 
 Create another file for qualityGate.groovy
+
+```bash
 def call(credentialsId) {
     waitForQualityGate abortPipeline: false, credentialsId: credentialsId   
 }
+```
 
 Create another file for npmInstall.groovy
+
+```bash
 def call() {
     sh 'npm install'
 }
+```
+
 
 Push them to the GitHub Jenkins shared library
+
+```bash
 git add .
 git commit -m "message"
 git push origin main
+```
 
 Add these stages to the pipeline now
 #under parameters
+
+```bash
 tools{
         jdk 'jdk17'
         nodejs 'node16'
@@ -517,8 +532,11 @@ tools{
     environment {
         SCANNER_HOME=tool 'sonar-scanner'
     }
+```
 
 # add in stages
+
+```bash
 stage('sonarqube Analysis'){
         when { expression { params.action == 'create'}}    
             steps{
@@ -540,11 +558,12 @@ stage('sonarqube Analysis'){
                 npmInstall()
             }
         }
+```
 
 Build now.
 Stage view
 
-To see the report, you can go to Sonarqube Server and go to Projects.
+<p>To see the report, you can go to Sonarqube Server and go to Projects.</p>
 
 You can see the report has been generated and the status shows as passed. You can see that there are 517 lines scanned. To see a detailed report, you can go to issues.
 Slack Notification
